@@ -17,7 +17,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.RsaProvider;
 import mim.auth.service.entity.models.UserDetails;
-import mim.auth.service.models.JwtToken;
+import mim.auth.service.models.JwtTokenResponce;
 
 @Service
 public class JwtTokenService implements EnvironmentAware {
@@ -47,9 +47,9 @@ public class JwtTokenService implements EnvironmentAware {
 
 	}
 
-	public JwtToken generateJwtToken(UserDetails userDetails) {
+	public JwtTokenResponce generateJwtToken(UserDetails userDetails) {
 
-		return new JwtToken(generateToken(userDetails));
+		return new JwtTokenResponce(generateToken(userDetails));
 
 	}
 
