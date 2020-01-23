@@ -1,27 +1,20 @@
 package mim.auth.service.services;
 
-import java.security.Key;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import javax.crypto.spec.SecretKeySpec;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
-
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.TextCodec;
 import io.jsonwebtoken.impl.crypto.RsaProvider;
 import mim.auth.service.entity.models.UserDetails;
 import mim.auth.service.models.JwtToken;
@@ -36,8 +29,7 @@ public class JwtTokenService implements EnvironmentAware {
 
 	public static final String MIM_AUTH_SERVICE_PUBLIC_KEY = "MIM_AUTH_SERVICE_PUBLIC_KEY";
 	public static final String MIM_AUTH_SERVICE_PRIVATE_KEY = "MIM_AUTH_SERVICE_PRIVATE_KEY";
-	
-	
+
 	PrivateKey privateKey;
 	PublicKey publicKey;
 
@@ -48,22 +40,10 @@ public class JwtTokenService implements EnvironmentAware {
 		// String public_key = environment.getProperty(MIM_AUTH_SERVICE_PUBLIC_KEY);
 		// String private_key = environment.getProperty(MIM_AUTH_SERVICE_PRIVATE_KEY);
 
-
 		KeyPair keyPair = RsaProvider.generateKeyPair(1024);
-		
-		
 
-		
 		privateKey = keyPair.getPrivate();
-				
 		publicKey = keyPair.getPublic();
-		
-		X509EncodedKeySpec bobPubKeySpec = new X509EncodedKeySpec(publicKey.getEncoded());
-		
-		
-		System.out.println(privateKey.getEncoded());
-		//System.out.println(bobPubKeySpec.);
-
 
 	}
 
