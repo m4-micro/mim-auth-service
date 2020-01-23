@@ -16,4 +16,6 @@ public interface UserDetailsRepository extends JpaRepository<UserDetails, UUID> 
 
 	public List<UserDetails> findByUserIdOrEmailId(String userId, String emailId);
 
+	public List<UserDetails> findByUserId(String userId);
+
 }
